@@ -18,7 +18,7 @@ function Banner() {
                                             <div className='banner_animate_image'>
                                                 {/* <div className='banner_ring'></div> */}
                                                 <div className="banner_image">
-                                                    <img src={heroImg2} alt="" />
+                                                    <img src={heroImg} alt="" />
                                                 </div>
                                                 {/* <div className='orbit_ring'><FontAwesomeIcon icon={faCircleDot} /></div>
                                                 <div className='orbit_ring'><FontAwesomeIcon icon={faCircleDot} /></div> */}
