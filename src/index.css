@@ -461,9 +461,8 @@ div#resume a.resume_download_btn {background: #58a6ff;border-radius: 50%;width: 
   /* About */
   .about-left-content h1 { font-size: 4rem; }
   .year_exp .year_exp_text h2 { font-size: 48px; }
- 
-  /* Skills — full width pills */
-  .skill_pill { width: 100%; }
+
+  .skills_grid{columns: 2%;}
  
   /* Services */
   .process_detail .process_cards_data .process_img { height: 120px; width: 150px; }
