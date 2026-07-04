@@ -321,6 +321,8 @@ div#resume a.resume_download_btn {background: #58a6ff;border-radius: 50%;width: 
   .custom_header .navbar ul.navbar-nav { flex-direction: column; gap: 8px; width: 100%; }
   .custom_header .navbar ul.navbar-nav li.nav-item a.nav-link { padding: 6px 0; }
   .open_to_work { margin-top: 8px; }
+  .navbar-toggler:focus {box-shadow: none;}
+  .custom_header {background: #0d1117;z-index:1}
  
   /* Banner */
   .home_banner { padding: 130px 0 80px; }
