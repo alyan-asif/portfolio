@@ -16,6 +16,7 @@ import { faStarOfLife, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import { motion } from 'motion/react';
 
 const projects = [
   {
@@ -157,16 +158,28 @@ export default function FeaturedProjects() {
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <div className="featured_content">
+            <motion.div 
+              className="featured_content"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8 }}
+            >
               <span className="custom_text_design">
                 <FontAwesomeIcon icon={faStarOfLife} /> Featured Projects
               </span>
               <h3>
                 OUR CREATIVE <span className="text_shadow">SHOWCASE</span>
               </h3>
-            </div>
+            </motion.div>
 
-            <div className="featured_slider">
+            <motion.div 
+              className="featured_slider"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
               <Swiper
                 modules={[Pagination, , Autoplay]}
                 spaceBetween={24}
@@ -186,7 +199,11 @@ export default function FeaturedProjects() {
               >
                 {projects.map((p) => (
                   <SwiperSlide key={p.title}>
-                    <div className="project_card">
+                    <motion.div 
+                      className="project_card"
+                      whileHover={{ y: -8, scale: 1.02 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    >
                       <div
                         className="project_card_top"
                         style={{ background: p.background }} style={{
@@ -210,18 +227,26 @@ export default function FeaturedProjects() {
                       </div>
                       <div className="project_footer">
                         <span className="project_period">{p.period}</span>
-                        <a href={p.link} target="_blank" rel="noopener noreferrer" className="card_more_detail">
+                        <motion.a 
+                          href={p.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="card_more_detail"
+                          whileHover={{ x: 3 }}
+                        >
                           VIEW PROJECT
-                          <span>
+                          <motion.span
+                            whileHover={{ scale: 1.2, backgroundColor: "var(--white)", color: "var(--primary)" }}
+                          >
                             <FontAwesomeIcon icon={faArrowUp} style={{ transform: 'rotate(45deg)' }} />
-                          </span>
-                        </a>
+                          </motion.span>
+                        </motion.a>
                       </div>
-                    </div>
+                    </motion.div>
                   </SwiperSlide>
                 ))}
               </Swiper>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

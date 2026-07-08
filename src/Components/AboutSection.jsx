@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStarOfLife, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { motion } from 'motion/react';
 
 const skills = [
   { icon: '🌐', label: 'HTML / CSS' },
@@ -80,6 +81,24 @@ const education = [
   },
 ];
 
+const valuedContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const valuedItemVariants = {
+  hidden: { x: -30, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+};
+
 export default function AboutSection() {
   return (
     <>
@@ -91,37 +110,74 @@ export default function AboutSection() {
           <div className="row">
 
             {/* <!-- LEFT COL --> */}
-            <div className="col-md-6">
+            <motion.div 
+              className="col-md-6"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
               <div className='about-left-content'>
                 <h3>CRAFTING DIGITAL <span className='text_shadow'>EXPERIENCES</span> BUILDING WITH PURPOSE <span className='custom_text_design'><FontAwesomeIcon icon={faStarOfLife} /> ABOUT ME</span></h3>
                 <div className='year_exp'>
-                  <h1>2</h1>
+                  <motion.h1
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2, type: "spring" }}
+                  >
+                    2
+                  </motion.h1>
                   <div className='year_exp_text'>
-                    <h2>+</h2>
+                    <motion.h2
+                      initial={{ rotate: -45, scale: 0 }}
+                      whileInView={{ rotate: 0, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.3, type: "spring" }}
+                    >
+                      +
+                    </motion.h2>
                     <h4>YEARS OF EXPERIENCE</h4>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* <!-- RIGHT COL --> */}
             <div className="col-md-6">
               <div className="about_content">
-                <p>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                >
                   Frontend & CMS Developer with 2+ years of experience building
                   responsive and scalable web applications using
                   Shopify, WordPress, Laravel Blade, Wix, React and Webflow.
-                </p>
+                </motion.p>
 
-                <p>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.15 }}
+                >
                   I focus on creating fast, accessible, and conversion-oriented
-                  digital experiences for businesses worldwide.</p>
-                <div className='about_valued'>
-                  <div className='about_valued_content'><h5>Project Completed</h5><h3>20+</h3></div>
-                  <div className='about_valued_content'><h5>Platforms Mastered</h5><h3>4</h3></div>
-                  <div className='about_valued_content'><h5>Responsive Solutions</h5><h3>100%</h3></div>
-                  <div className='about_valued_content'><h5>CGPA</h5><h3>3.3</h3></div>
-                </div>
+                  digital experiences for businesses worldwide.
+                </motion.p>
+                <motion.div 
+                  className='about_valued'
+                  variants={valuedContainerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                >
+                  <motion.div className='about_valued_content' variants={valuedItemVariants}><h5>Project Completed</h5><h3>20+</h3></motion.div>
+                  <motion.div className='about_valued_content' variants={valuedItemVariants}><h5>Platforms Mastered</h5><h3>4</h3></motion.div>
+                  <motion.div className='about_valued_content' variants={valuedItemVariants}><h5>Responsive Solutions</h5><h3>100%</h3></motion.div>
+                  <motion.div className='about_valued_content' variants={valuedItemVariants}><h5>CGPA</h5><h3>3.3</h3></motion.div>
+                </motion.div>
               </div>
             </div>
 
@@ -135,16 +191,27 @@ export default function AboutSection() {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <div className="edu_block">
+              <motion.div 
+                className="edu_block"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.8 }}
+              >
                 <span className="custom_text_design">
                   <FontAwesomeIcon icon={faStarOfLife} /> Education
                 </span>
                 <div className="edu_timeline">
-                  {education.map((edu) => (
-                    <div
+                  {education.map((edu, index) => (
+                    <motion.div
                       className="edu_item"
                       key={edu.degree}
                       style={{ borderLeftColor: edu.color }}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      whileHover={{ scale: 1.02, y: -4, borderColor: edu.color }}
                     >
                       <span
                         className="edu_badge"
@@ -165,37 +232,62 @@ export default function AboutSection() {
                           ))}
                         </ul>
                       )}
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             </div>
             <div className="col-md-6">
-              <div className="skills_block">
+              <motion.div 
+                className="skills_block"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.8 }}
+              >
                 <span className="custom_text_design">
                   <FontAwesomeIcon icon={faStarOfLife} /> Skills & Expertise
                 </span>
                 <div className="skills_grid">
-                  {skills.map((skill) => (
-                    <div className="skill_pill" key={skill.label}>
+                  {skills.map((skill, index) => (
+                    <motion.div 
+                      className="skill_pill" 
+                      key={skill.label}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.04 }}
+                      whileHover={{ scale: 1.05, borderColor: "var(--primary)" }}
+                    >
                       <span className="skill_icon">{skill.icon}</span>
                       <span>{skill.label}</span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-              </div>
+               </motion.div>
             </div>
             <div className="col-md-6">
-              <div className="exp_block">
+              <motion.div 
+                className="exp_block"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.8 }}
+              >
                 <span className="custom_text_design">
                   <FontAwesomeIcon icon={faStarOfLife} /> Work Experience
                 </span>
                 <div className="exp_timeline">
-                  {experience.map((exp) => (
-                    <div
+                  {experience.map((exp, index) => (
+                    <motion.div
                       className="exp_item"
                       key={exp.role}
                       style={{ borderLeftColor: exp.color }}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      whileHover={{ scale: 1.02, y: -4, borderColor: exp.color }}
                     >
                       <span
                         className="exp_badge"
@@ -214,10 +306,10 @@ export default function AboutSection() {
                             <li key={index}>{item}</li>
                           ))}
                         </ul>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
